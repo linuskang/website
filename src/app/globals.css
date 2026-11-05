@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #232136;
+  --foreground: #e0def4;
+
+  --primary: #9f94f5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-andika);
+  --font-mono: var(--font-geist-mono);
+}
+  
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-andika), sans-serif;
+}
+
+a {
+  --icon: url("/globe.svg");
+  white-space: nowrap;
+}
+
+a:not(.no-icon) {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+a:not(.no-icon)::before {
+  content: "";
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-right: 0.2em;
+  vertical-align: 0.1em;
+
+  background-color: currentColor;
+
+  -webkit-mask: var(--icon) no-repeat center / contain;
+  mask: var(--icon) no-repeat center / contain;
+}
+
+a[href*="/blog"] {
+  --icon: url("/blog.svg");
+}
+
+a[href*="/projects"] {
+  --icon: url("/project.svg");
+}
+
+a[href*="twitch.tv"] {
+  --icon: url("/twitch.svg")
+}
+
+a[href*="github.com"] {
+  --icon: url("/github.svg");
+}
+
+a[href*="git.linus.my"] {
+  --icon: url("/gitea.svg")
+}
+
+a[href*="codeberg.org"] {
+  --icon: url("/codeberg.svg")
+}
+
+a[href*="gitlab.com"] {
+  --icon: url("/gitlab.svg")
+}
+
+a[href*="discord.com"] {
+  --icon: url("/discord.svg");
+}
+
+a[href*="youtube.com"] {
+  --icon: url("/youtube.svg");
+}
+
+a[href^="mailto:"] {
+  --icon: url("/email.svg");
+}
+
+.social {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: var(--icon) no-repeat center / contain;
+  mask: var(--icon) no-repeat center / contain;
+}
+
+.australia-upside-down {
+  transform: rotate(180deg);
+  transform-origin: center center;
+  min-h: 100vh;
+}
