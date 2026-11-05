@@ -3,6 +3,7 @@ import { Andika, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Suspense } from "react";
 import Australian from "@/components/australia";
+import Spinner from "@/components/spinner";
 import "./globals.css";
 
 const andika = Andika({
@@ -41,7 +42,11 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <Suspense
-          fallback={<div className="min-h-full flex flex-col">{children}</div>}
+          fallback={
+            <div className="fixed inset-0 flex items-center justify-center">
+              <Spinner />
+            </div>
+          }
         >
           <Australian>{children}</Australian>
         </Suspense>

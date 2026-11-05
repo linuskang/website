@@ -11,18 +11,15 @@ export default function AustralianWrapper({
 }) {
   const searchParams = useSearchParams();
   const param = searchParams.get("australia-is-upside-down");
-  const [flip, setFlip] = useState(false);
+  const [detectedFlip, setDetectedFlip] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    if (param === "false") {
-      setFlip(false);
-      return;
-    }
+  const flip =
+    param === "true" ? true : param === "false" ? false : detectedFlip;
 
-    if (param === "true") {
-      setFlip(true);
+  useEffect(() => {
+    if (param === "false" || param === "true") {
       return;
     }
 
@@ -32,7 +29,7 @@ export default function AustralianWrapper({
         const d = await res.json();
 
         if (d.country_code === "AU") {
-          setFlip(true);
+          setDetectedFlip(true);
 
           const p = new URLSearchParams(searchParams.toString());
 
@@ -45,7 +42,7 @@ export default function AustralianWrapper({
     }
 
     detectCountry();
-  }, [param]);
+  }, [param, pathname, router, searchParams]);
 
   return (
     <div

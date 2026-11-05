@@ -111,3 +111,31 @@ a[href^="mailto:"] {
   transform-origin: center center;
   min-h: 100vh;
 }
+
+/* GitHub Activity Calendar custom theme matching Rosé Pine Moon */
+.react-activity-calendar {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.react-activity-calendar__scroll-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+.react-activity-calendar__calendar {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+.react-activity-calendar text {
+  fill: #908caa !important;
+  font-family: var(--font-andika), sans-serif !important;
+}
+
+.react-activity-calendar rect {
+  stroke: none !important;
+  pointer-events: none !important;
+}

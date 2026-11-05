@@ -1,29 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
+import ContributionGraph from "@/components/contributionGraph";
+import Spinner from "@/components/spinner";
 
 export default function Home() {
   const [greeting, setGreeting] = useState("Hello there,");
   const [mounted, setMounted] = useState(false);
+  const [showSpinner, setShowSpinner] = useState(true);
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    setMounted(true);
+    const mountTimer = setTimeout(() => {
+      setMounted(true);
+    }, 0);
 
-    const currentHour = new Date().getHours();
+    const spinnerTimer = setTimeout(() => {
+      setShowSpinner(false);
+    }, 800);
 
-    if (currentHour >= 5 && currentHour < 12) {
-      setGreeting("Good morning,");
-    } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting("Good afternoon,");
-    } else {
-      setGreeting("Good evening,");
-    }
-
-    async function updateClock() {
+    function updateClock() {
       const now = new Date();
 
       setTime(
@@ -33,20 +31,45 @@ export default function Home() {
           hour12: false,
         }),
       );
+
+      const currentHour = now.getHours();
+      if (currentHour >= 5 && currentHour < 12) {
+        setGreeting("Good morning,");
+      } else if (currentHour >= 12 && currentHour < 18) {
+        setGreeting("Good afternoon,");
+      } else {
+        setGreeting("Good evening,");
+      }
     }
 
     updateClock();
     const interval = setInterval(updateClock, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(mountTimer);
+      clearTimeout(spinnerTimer);
+    };
   }, []);
 
   return (
-    <div
-      className={`flex flex-col p-4 items-center justify-center min-h-screen transition-opacity duration-1000 ease-out ${
-        mounted ? "opacity-100" : "opacity-0"
-      }`}
-    >
+    <>
+      {showSpinner && (
+        <div
+          aria-hidden={mounted}
+          className={`fixed inset-0 z-50 flex items-center justify-center pointer-events-none transition-opacity duration-500 ease-out ${
+            mounted ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <Spinner />
+        </div>
+      )}
+
+      <div
+        className={`flex flex-col p-6 items-center justify-center min-h-screen transition-opacity duration-1000 ease-out ${
+          mounted ? "opacity-100" : "opacity-0"
+        }`}
+      >
       <div className="max-w-xl">
         <div className="flex flex-col items-center justify-center">
           <Image
@@ -58,7 +81,7 @@ export default function Home() {
           />
 
           <h1 className="text-4xl text-center font-semibold">
-            {greeting} I'm Linus.
+            {greeting} I&apos;m Linus.
           </h1>
         </div>
 
@@ -169,7 +192,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div>{/*Github contribution graph*/}</div>
+          <ContributionGraph username="linuskang" />
 
           <div className="flex flex-col items-center mt-4">
             <p>
@@ -190,5 +213,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }
