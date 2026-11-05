@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen transition-opacity duration-1000 ease-out ${
+      className={`flex flex-col p-4 items-center justify-center min-h-screen transition-opacity duration-1000 ease-out ${
         mounted ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -57,7 +57,9 @@ export default function Home() {
             className="rounded-full inline-block mb-4"
           />
 
-          <h1 className="text-4xl font-semibold">{greeting} I'm Linus.</h1>
+          <h1 className="text-4xl text-center font-semibold">
+            {greeting} I'm Linus.
+          </h1>
         </div>
 
         <div className="mt-4 text-center flex flex-col gap-4">
@@ -88,11 +90,11 @@ export default function Home() {
           </p>
 
           <p className="text-md">
-            Oh, I also have a{" "}
+            I also have a brand new{" "}
             <Link href="/blog" target="_blank">
               blog
             </Link>{" "}
-            that you can check out. I write about pretty much anything tech.
+            !
           </p>
 
           <p className="text-md">
