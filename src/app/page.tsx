@@ -8,6 +8,7 @@ import Link from "next/link";
 export default function Home() {
   const [greeting, setGreeting] = useState("Hello there,");
   const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState("");
 
   useEffect(() => {
     setMounted(true);
@@ -21,6 +22,23 @@ export default function Home() {
     } else {
       setGreeting("Good evening,");
     }
+
+    async function updateClock() {
+      const now = new Date();
+
+      setTime(
+        now.toLocaleTimeString("en-AU", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+      );
+    }
+
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -86,72 +104,87 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex justify-center items-center gap-4 mt-6">
-          <Link
-            href="https://github.com/linuskang"
-            target="_blank"
-            aria-label="GitHub"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+        <div>
+          <div className="flex justify-center items-center gap-4 mt-6">
+            <Link
+              href="https://github.com/linuskang"
+              target="_blank"
+              aria-label="GitHub"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="https://gitlab.com/linuskang"
-            target="_blank"
-            aria-label="Gitlab"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+            <Link
+              href="https://gitlab.com/linuskang"
+              target="_blank"
+              aria-label="Gitlab"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="https://codeberg.org/linuskang"
-            target="_blank"
-            aria-label="Codeberg"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+            <Link
+              href="https://codeberg.org/linuskang"
+              target="_blank"
+              aria-label="Codeberg"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="https://discord.com/users/"
-            area-label="Discord"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+            <Link
+              href="https://discord.com/users/"
+              area-label="Discord"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="mailto:m@linuskang.au"
-            aria-label="Email"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+            <Link
+              href="mailto:m@linuskang.au"
+              aria-label="Email"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="https://youtube.com/@linus-kang"
-            target="_blank"
-            aria-label="YouTube"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
+            <Link
+              href="https://youtube.com/@linus-kang"
+              target="_blank"
+              aria-label="YouTube"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
 
-          <Link
-            href="https://twitch.tv/linuskang"
-            aria-label="Twitch"
-            className="no-icon text-foreground/75 hover:text-white transition-colors"
-          >
-            <span className="social-icon" />
-          </Link>
-        </div>
+            <Link
+              href="https://twitch.tv/linuskang"
+              aria-label="Twitch"
+              className="no-icon text-foreground/75 hover:text-white transition-colors"
+            >
+              <span className="social-icon" />
+            </Link>
+          </div>
 
-        <div>{/*Github contribution graph*/}</div>
+          <div>{/*Github contribution graph*/}</div>
 
-        <div className="flex flex-col items-center mt-6">
-          <Image src="/not-by-ai.svg" alt="Not by AI" height={80} width={90} />
+          <div className="flex flex-col items-center mt-4">
+            <p>
+              It is currently{" "}
+              <span className="font-semibold text-primary">{time}</span> in my
+              hometown.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center mt-4">
+            <Image
+              src="/not-by-ai.svg"
+              alt="Not by AI"
+              height={80}
+              width={90}
+            />
+          </div>
         </div>
       </div>
     </div>
