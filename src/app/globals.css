@@ -139,3 +139,117 @@ a[href^="mailto:"] {
   stroke: none !important;
   pointer-events: none !important;
 }
+
+/* Blog Markdown Typography Styling */
+.prose {
+  color: var(--foreground);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--foreground);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid rgba(224, 222, 244, 0.1);
+  padding-bottom: 0.35rem;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+}
+
+.prose p {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: normal;
+}
+
+.prose a::before {
+  display: none !important;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--primary);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: rgba(224, 222, 244, 0.75);
+  font-style: italic;
+}
+
+.prose code:not(pre code) {
+  background-color: #2a273f;
+  color: var(--primary);
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875em;
+}
+
+.prose code::before,
+.prose code::after {
+  content: "" !important;
+}
+
+.prose pre {
+  background-color: #1f1d2e !important;
+  border: 1px solid rgba(224, 222, 244, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  color: var(--foreground);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.prose hr {
+  border-color: rgba(224, 222, 244, 0.15);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
