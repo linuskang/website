@@ -47,4 +47,4 @@ I use vercel for deployments, so go to https://vercel.com, create an account, an
 
 # License
 
-AGPL-V3, see [the license](LICENSE) for details.
+See [the license](LICENSE) for details.
