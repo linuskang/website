@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "linus's blog",
@@ -23,17 +24,8 @@ export default async function BlogPage() {
         </div>
 
         <nav className="flex items-center gap-4 text-md font-medium pt-1">
-          <Link
-            href="/"
-            className="no-icon text-primary hover:underline transition-colors"
-          >
-            homepage
-          </Link>
-          <Link
-            href="/rss.xml"
-            className="no-icon text-primary hover:underline transition-colors"
-          >
-            rss
+          <Link href="/" className="no-icon hover:underline transition-colors">
+            go back
           </Link>
         </nav>
       </header>
@@ -81,26 +73,7 @@ export default async function BlogPage() {
           </div>
         )}
       </main>
-
-      <footer className="mt-20 pt-8 text-center text-xs text-foreground/60 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-        <span>made by linus</span>
-        <span>·</span>
-        <Link
-          href="https://github.com/linuskang/website"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-icon hover:text-primary hover:underline transition-colors"
-        >
-          source code
-        </Link>
-        <span>·</span>
-        <Link
-          href="/rss.xml"
-          className="no-icon hover:text-primary hover:underline transition-colors"
-        >
-          rss
-        </Link>
-      </footer>
+      <Footer />
     </div>
   );
 }

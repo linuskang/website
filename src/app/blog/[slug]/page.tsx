@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
+import { Footer } from "@/components/footer";
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs();
@@ -46,9 +47,9 @@ export default async function BlogPostPage({
         <nav className="mb-10 flex items-center justify-between text-sm">
           <Link
             href="/blog"
-            className="no-icon text-primary hover:underline transition-colors flex items-center gap-1"
+            className="no-icon hover:underline transition-colors flex items-center gap-1"
           >
-            {"<"} go back
+            go back
           </Link>
         </nav>
 
@@ -78,25 +79,7 @@ export default async function BlogPostPage({
         />
       </div>
 
-      <footer className="mt-20 pt-8 text-center text-xs text-foreground/60 flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
-        <span>made by linus</span>
-        <span>·</span>
-        <Link
-          href="https://github.com/linuskang/website"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-icon hover:text-primary hover:underline transition-colors"
-        >
-          source code
-        </Link>
-        <span>·</span>
-        <Link
-          href="/rss.xml"
-          className="no-icon hover:text-primary hover:underline transition-colors"
-        >
-          rss
-        </Link>
-      </footer>
+      <Footer />
     </div>
   );
 }
