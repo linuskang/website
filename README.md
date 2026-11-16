@@ -1,5 +1,5 @@
 > [!NOTE]
-> This version 5 of my portfolio. See the previous version [here](https://github.com/linuskang/linuskang.au)
+> Welcome to my portfolio site, currently V5. See the previous version & it's repository [here](https://github.com/linuskang/linuskang.au)
 
 # My website!
 
